@@ -1,0 +1,197 @@
+<!-- <mat-toolbar  color="primary">Enter Model Details</mat-toolbar> -->
+<div class="container-fluid">
+<form  [formGroup]="modelForm">
+<div class="row">
+    <div class="col-sm-4">
+      <div class="form-group" style="margin:40px;">
+          <img [src]="imgUrl" class="img-thumbnail" alt="Cinque Terre" *ngIf="flag" >
+            <br>
+            <br>
+            <input hidden type="file" #fileInput (change)="preview($event)" class="form-control" formControlName="modelImg">
+            <button mat-raised-button class="submit-button" color="primary" type="submit" (click)="fileInput.click()">Upload</button>
+      </div>
+     
+    </div>
+  <div class="col-sm-6" style="margin:40px;">
+      <mat-card class="example-card"> 
+                  <mat-toolbar  color="primary">Enter Model Details</mat-toolbar>
+            <!-- <mat-card-header [style.backgroundColor]="'yellow'">
+                  Enter Model Details
+            </mat-card-header> -->
+            <mat-card-content>
+                  <div class="row">
+                        <div class="form-group col-sm-6"> 
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="Model Name" formControlName="modelName" [errorStateMatcher]="matcher">
+                                   
+                              </mat-form-field>
+                        </div>
+                        <div class="form-group col-sm-6"> 
+                                    <mat-form-field class="col-sm-12">
+                                                <mat-label>Company</mat-label>
+                                                <mat-select formControlName="modelCompany" [errorStateMatcher]="matcher">
+                                                  <mat-option *ngFor="let comp of company" value="{{comp}}">
+                                                    {{comp}}
+                                                  </mat-option>
+                                                </mat-select>
+                                    </mat-form-field>
+                              </div>
+                  </div>
+                  <!-- <div class="row">
+                        <mat-chip-list >
+                              <mat-chip color="primary" selected>Processor</mat-chip>
+                        </mat-chip-list> -->
+                        
+                              <!-- <p style="color:blue" class="font-weight-bolder">Processor</p> 
+                        
+                  </div> -->
+                 
+                  <p>Processor</p>
+                  
+                  <div class="row">
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="CPU" formControlName="modelCPU" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="No of core"   formControlName="modelCores" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                  </div>
+                  <!-- <div class="row">
+                        <mat-chip-list >
+                              <mat-chip color="primary" selected>Memory</mat-chip>
+                        </mat-chip-list> 
+                  </div> -->
+                 
+                  <p>Memory</p>
+                 
+                  <div class="row">
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="RAM"  formControlName="modelRAM" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="Internal"   formControlName="modelInternal" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                  </div> 
+                  <!-- <div class="row">
+                        <mat-chip-list >
+                              <mat-chip color="primary" selected>Display</mat-chip>
+                        </mat-chip-list> 
+                  </div> -->
+                 
+                  <p>Display</p>
+                 
+                  <div class="row">
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="Resolution"   formControlName="modelResolution" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                              <input matInput placeholder="Screen Size"   formControlName="modelScreenSize" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                  </div>    
+                  <!-- <div class="row">
+                        <mat-chip-list >
+                              <mat-chip color="primary" selected>Camera</mat-chip>
+                        </mat-chip-list> 
+                  </div> -->
+                 
+                  <p>Camera</p>
+                
+                  <div class="row">
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                              <input matInput placeholder="Front" formControlName="modelFront" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="Rear"   formControlName="modelRear" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                        </div>
+                  </div>
+                  <!-- <div class="row">
+                        <mat-chip-list >
+                              <mat-chip color="primary" selected>Battery</mat-chip>
+                        </mat-chip-list>
+                  </div>    -->
+                  
+                  <p>Battery</p>
+                 
+                  <div class="row">
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <input matInput placeholder="Capacity"   formControlName="modelCapacity" [errorStateMatcher]="matcher">
+                              </mat-form-field>  
+                        </div>
+                        <div class="form-group col-sm-6">
+                              <mat-form-field class="col-sm-12">
+                                    <!-- <mat-radio-button value="true" class="form-control" formControlName="modelFastcharging">Fast charging</mat-radio-button> -->
+                              <input matInput placeholder="Fast charging"  formControlName="modelFastcharging" [errorStateMatcher]="matcher">
+                              </mat-form-field>
+                              
+                        </div>
+                  </div> 
+                  <p>Price</p>
+                  <div class="row">
+                              <div class="form-group col-sm-6">
+                                    <mat-form-field class="col-sm-12">
+                                          <input matInput placeholder="Price(INR)"   formControlName="modelPrice" [errorStateMatcher]="matcher">
+                                    </mat-form-field>  
+                              </div>
+                             
+                        </div> 
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-raised-button class="submit-button" [disabled]="modelForm.invalid" color="primary" type="submit" (click)="submit()">Save</button>
+      </mat-card-actions>
+</mat-card>
+  </div>
+</div>
+</form>
+
+<button style="display: none" id="clickId" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Open modal
+          </button>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+          
+                <!-- Modal body -->
+                <div class="modal-body" >
+                     
+                              <div class="spinner-border text-primary" style="position:fixed;right:50%;left:50%;">
+                                </div>  
+                              <br>
+                              <br>
+                                  <div style="text-align: center">Saving...</div>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+          <button style="display: none" id="clickId1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+              Open modal
+            </button>
+          <div class="modal" id="myModal1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+            
+                  <!-- Modal body -->
+              <div class="modal-body " style="text-align:center;">
+                          Saved Successfully&nbsp;<img style="width:38px ;height:38px" src="assets/greentick1.jpg">
+              </div>
+                </div> 
+              </div>
+            </div>
+      </div>

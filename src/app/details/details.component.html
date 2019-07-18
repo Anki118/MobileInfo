@@ -1,0 +1,223 @@
+<div class="container-fluid">
+    <div class="row" *ngIf="detailFlag"style="margin:40px">
+      <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3"><button mat-raised-button color="primary" (click)="goPrevious()">Previous</button></div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <mat-card class="example-card">
+                        <mat-card-header>
+      
+                          <mat-card-title>{{data.modelCompany}}</mat-card-title>
+                          <mat-card-subtitle>{{data.modelName}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <!-- <img mat-card-image stye="margin:10px" src="{{'/assets/'+data.modelName+'.jpg'}}" alt="Image"> -->
+                        <img mat-card-image style="height:80%;width: 80%;" src={{data.modelImg}} alt="Image">
+                        <mat-card-content>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a data-toggle="collapse" href="#processor">Processor</a>
+                                  <div id="processor" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li >{{data.modelCPU}}</li>
+                                        <li >{{data.modelCores}}</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <li class="list-group-item"><a data-toggle="collapse" href="#memory">Memory</a>
+                                  <div id="memory" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li>{{data.modelRAM}}&nbsp;RAM</li>
+                                        <li>{{data.modelInternal}}&nbsp;Internal</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <li class="list-group-item"><a data-toggle="collapse" href="#display">Display</a>
+                                  <div id="display" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li>{{data.modelResolution}}</li>
+                                        <li>{{data.modelScreenSize}}</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <li class="list-group-item"><a data-toggle="collapse" href="#camera">Camera</a>
+                                  <div id="camera" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li>{{data.modelFront}}&nbsp;Front</li>
+                                        <li>{{data.modelRear}}&nbsp;Rear</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <li class="list-group-item"><a data-toggle="collapse" href="#battery">Battery</a>
+                                  <div id="battery" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li>{{data.modelCapacity}}</li>
+                                        <li>{{data.modelFastcharging}}</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <li class="list-group-item"><a data-toggle="collapse" href="#price">Price</a>
+                                  <div id="price" class="collapse">
+                                      <ul style="list-style: none;">
+                                        <li>{{data.modelPrice | currency:'INR'}}|${{data.modelPrice|currencyConvert}}</li>
+                                      </ul>
+                                  </div>
+                                </li>
+                                <!-- <li class="list-group-item">Display</li> -->
+                              </ul>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-raised-button color="primary" (click)="editData()">Edit</button>
+                          <button mat-raised-button color="warn" (click)="deleteData()">Delete</button>
+                        </mat-card-actions>
+                      </mat-card>
+                      
+        </div> 
+        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>      
+    </div>    
+    <div class="row" *ngIf="editFlag"style="margin:40px">
+      <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <mat-card class="example-card">
+                        <mat-card-header>
+      
+                          <mat-card-title>{{data.modelCompany}}</mat-card-title>
+                          <mat-card-subtitle>{{data.modelName}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <!-- <img mat-card-image stye="margin:10px" src="{{'/assets/'+data.modelName+'.jpg'}}" alt="Image"> -->
+                        <img mat-card-image style="height:85%;width: 85%;" src={{data.modelImg}} alt="Image">
+                        <mat-card-content>
+                            <form  [formGroup]="modelForm">
+                                <div style="display: none">
+                                    <input hidden type="file" #fileInput (change)="preview($event)" class="form-control" formControlName="modelImg">
+                                    <input matInput placeholder="Model Name" formControlName="modelName">
+                                    <input matInput placeholder="Model Name" formControlName="modelCompany">
+                                </div>
+                                
+                            <ul class="list-group">
+                                <li class="list-group-item"><a>Processor</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="CPU" formControlName="modelCPU">
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="No of core"   formControlName="modelCores" >
+                                            </mat-form-field>
+                                      </div>
+                                </div>
+                                </li>
+                                <li class="list-group-item"><a>Memory</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="RAM"  formControlName="modelRAM" >
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="Internal"   formControlName="modelInternal" >
+                                            </mat-form-field>
+                                      </div>
+                                </div> 
+                                </li>
+                                <li class="list-group-item"><a>Display</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="Resolution"   formControlName="modelResolution" >
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <input matInput placeholder="Screen Size"   formControlName="modelScreenSize" >
+                                            </mat-form-field>
+                                      </div>
+                                </div>  
+                                </li>
+                                <li class="list-group-item"><a>Camera</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <input matInput placeholder="Front" formControlName="modelFront" >
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="Rear"   formControlName="modelRear" >
+                                            </mat-form-field>
+                                      </div>
+                                </div>
+                                </li>
+                                <li class="list-group-item"><a>Battery</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="Capacity"   formControlName="modelCapacity" >
+                                            </mat-form-field>  
+                                      </div>
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <!-- <mat-radio-button value="true" class="form-control" formControlName="modelFastcharging">Fast charging</mat-radio-button> -->
+                                            <input matInput placeholder="Fast charging"  formControlName="modelFastcharging" >
+                                            </mat-form-field>
+                                            
+                                      </div>
+                                </div> 
+                                </li>
+                                <li class="list-group-item"><a>Price</a>
+                                  <div class="row">
+                                      <div class="form-group col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <mat-form-field class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                  <input matInput placeholder="Price(INR)"   formControlName="modelPrice" >
+                                            </mat-form-field>  
+                                      </div>
+                                </div> 
+                                </li>
+                                <!-- <li class="list-group-item">Display</li> -->
+                              </ul>
+                          </form>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-raised-button color="primary" (click)="onUpdate(modelForm.value)">Save</button>
+                          <button mat-raised-button color="warn" (click)="onCancle()">Cancle</button>
+                        </mat-card-actions>
+                      </mat-card>
+                      
+        </div>   
+        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>    
+    </div>    
+</div>
+
+<button style="display: none" id="clickId" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Open modal
+  </button>
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal body -->
+        <div class="modal-body" >
+             
+                      <div class="spinner-border text-primary" style="position:fixed;right:50%;left:50%;">
+                        </div>  
+                      <br>
+                      <br>
+                          <div style="text-align: center">Updating...</div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  <button style="display: none" id="clickId1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+      Open modal
+    </button>
+  <div class="modal" id="myModal1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- Modal body -->
+      <div class="modal-body " style="text-align:center;">
+                  <p *ngIf="updateFlag">Updated Successfully</p><p *ngIf="deleteFlag">Deleted Successfully</p>&nbsp;<img style="width:38px ;height:38px" src="assets/greentick1.jpg">
+      </div>
+        </div> 
+      </div>
+    </div>
